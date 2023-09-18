@@ -5,7 +5,12 @@ This is simple blog api with golang and gin web framework. The main resources of
 ## How to run ?
 
 ~~~sh
-go run ./main.go
+make run
+~~~
+
+## Document generation
+~~~bash
+swag init
 ~~~
 
 ## For installing this Application please do this following steps
