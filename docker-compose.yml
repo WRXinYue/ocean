@@ -2,7 +2,7 @@ version: "3"
 
 services:
   blog_app:
-    container_name: go_blog_app
+    container_name: oceanblog
     build:
       context: .
       dockerfile: Dockerfile

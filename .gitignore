@@ -17,7 +17,6 @@
 
 #build files
 /bin
-/app
 
 #env files
 .env
