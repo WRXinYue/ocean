@@ -9,6 +9,9 @@ BUILD_DIR := ./bin
 
 all: build
 
+swag:
+	$(SWAG) init
+
 build:
 	$(GO) build $(GOFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/server
 

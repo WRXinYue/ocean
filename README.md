@@ -9,9 +9,7 @@ make run
 ~~~
 
 ## Document generation
-~~~bash
-swag init
-~~~
+http://127.0.0.1:8000/docs/index.html
 
 ## For installing this Application please do this following steps
 
