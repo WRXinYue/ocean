@@ -1,7 +1,18 @@
+<script lang="ts" setup>
+const router = useRouter()
+function login() {
+  router.push('/login/login')
+}
+</script>
+
 <template>
   <div h-100vh w-full flex flex-col>
     <!-- Head -->
-    <div h-14 w-full border />
+    <div h-14 w-full border>
+      <div @click="login">
+        登陆
+      </div>
+    </div>
     <div h-full flex>
       <!-- Nav Bar -->
       <div h-full w-40 flex flex-col overflow-y-auto border-r>
@@ -31,7 +42,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .nav-link {
   display: block;
   padding: 8px 16px;

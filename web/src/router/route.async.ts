@@ -18,15 +18,6 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     }],
   },
   {
-    path: '/hi/:name',
-    name: 'hi',
-    meta: {
-      title: '',
-      icon: '',
-    },
-    component: () => import('~/pages/hi/[name].vue'),
-  },
-  {
     path: '/process',
     name: 'process',
     meta: {
