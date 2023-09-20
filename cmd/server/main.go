@@ -7,6 +7,7 @@ import (
 	"github.com/abdurraufraihan/golang-blog-api/docs"
 	"github.com/abdurraufraihan/golang-blog-api/internal/route"
 	"github.com/abdurraufraihan/golang-blog-api/pkg/logger"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -33,6 +34,15 @@ func main() {
 	defer adapter.CloseDbConnection(db)
 	logger := logger.NewLogger()
 	router := gin.Default()
+
+	// Add CORS middleware
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3333"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Content-Type", "Authorization"},
+		AllowCredentials: true,
+	}))
+
 	route.RootRoute(db, router, logger)
 	docs.SwaggerInfo.BasePath = "/api/v1"
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
