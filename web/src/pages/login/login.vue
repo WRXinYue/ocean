@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { nextTick } from 'vue'
+import { POSITION, useToast } from 'vue-toastification'
 import loginApi from '~/api/modules/login'
-import Message from '~/components/Message/Message.vue'
+
+const toast = useToast()
 
 const router = useRouter()
-const message = ref()
 
 const email = ref('')
 const password = ref('')
@@ -15,9 +16,8 @@ async function handleSubmit(event: any) {
   try {
     const response = await loginApi.postVerification({ email: email.value, password: password.value })
     if (response.status) {
-      message.value.success({
-        message: 'Successful landing',
-        description: ' ',
+      toast.success('Login Successful', {
+        position: POSITION.TOP_CENTER,
       })
 
       // Delay the router navigation
@@ -27,7 +27,9 @@ async function handleSubmit(event: any) {
     }
   }
   catch (error) {
-    console.error(error)
+    toast.error(`Login Failed. Please check your credentials and try again. \nError info: ${(error as any).errors}`, {
+      position: POSITION.TOP_CENTER,
+    })
   }
 }
 </script>
@@ -41,10 +43,4 @@ async function handleSubmit(event: any) {
       <input type="reset" value="取消">
     </p>
   </form>
-  <Message
-    ref="message"
-    placement="topRight"
-    :duration="3000"
-    :top="24"
-  />
 </template>

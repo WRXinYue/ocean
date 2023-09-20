@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Alert: typeof import('./components/Alert.vue')['default']
     Meessages: typeof import('./components/Meessages.vue')['default']
     Message: typeof import('./components/Message/Message.vue')['default']
+    Notification: typeof import('./components/Notification/Notification.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

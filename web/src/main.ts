@@ -1,10 +1,12 @@
 import { ViteSSG } from 'vite-ssg'
 import { setupLayouts } from 'virtual:generated-layouts'
+import Toast from 'vue-toastification'
 import App from './App.vue'
 import type { UserModule } from './types'
 
 // import { routes as customRoutes } from '~/router/index'
 import generatedRoutes from '~pages'
+import 'vue-toastification/dist/index.css'
 import '@unocss/reset/tailwind.css'
 import '~/assets/styles/main.scss'
 import 'uno.css'
@@ -27,6 +29,7 @@ export const createApp = ViteSSG(
     // Add global properties to app.config
     // const app = ctx.app
 
+    ctx.app.use(Toast, { timeout: 2000 })
     // ctx.app.use(Previewer)
   },
 )
