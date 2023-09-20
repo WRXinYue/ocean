@@ -20,10 +20,7 @@ async function handleSubmit(event: any) {
         position: POSITION.TOP_CENTER,
       })
 
-      // Delay the router navigation
-      nextTick(() => {
-        router.push('/')
-      })
+      goHome()
     }
   }
   catch (error) {
@@ -32,15 +29,32 @@ async function handleSubmit(event: any) {
     })
   }
 }
+
+function goHome() {
+  // Delay the router navigation
+  nextTick(() => {
+    router.push('/')
+  })
+}
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit">
-    <p>Email: <input v-model="email" type="text" name="name" size="20" border></p>
-    <p>Password: <input v-model="password" type="password" name="password" size="20" border></p>
-    <p>
-      <input type="submit" value="确定">
-      <input type="reset" value="取消">
-    </p>
-  </form>
+  <div h-100vh w-full justify-center>
+    <div relative top-45>
+      <form mx-auto my-8 max-w-sm w-full @submit.prevent="handleSubmit">
+        <div mb-4>
+          <label for="email" mb-2 block text-sm font-bold text-gray-700>Email:</label>
+          <input id="email" v-model="email" type="text" name="name" w-full appearance-none border rounded px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none>
+        </div>
+        <div mb-4>
+          <label for="password" mb-2 block text-sm font-bold text-gray-700>Password:</label>
+          <input id="password" v-model="password" type="password" name="password" w-full appearance-none border rounded px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none>
+        </div>
+        <div flex items-center justify-between>
+          <input type="submit" value="confirm" rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none>
+          <input type="reset" value="cancel" rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none @click="goHome">
+        </div>
+      </form>
+    </div>
+  </div>
 </template>

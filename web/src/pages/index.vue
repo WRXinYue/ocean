@@ -8,9 +8,10 @@ function login() {
 <template>
   <div h-100vh w-full flex flex-col>
     <!-- Head -->
-    <div h-14 w-full border>
-      <div @click="login">
-        登陆
+    <div h-14 w-full flex flex-items-center border px-8>
+      <div>OceanBlog</div>
+      <div ml-auto @click="login">
+        登录
       </div>
     </div>
     <div h-full flex>
@@ -36,7 +37,7 @@ function login() {
       </div>
       <!-- Body Content -->
       <div h-full w-full>
-        123
+        niaaako
       </div>
     </div>
   </div>

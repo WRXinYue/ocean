@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main flex>
     <RouterView />
     <!-- <TheFooter /> -->
   </main>
