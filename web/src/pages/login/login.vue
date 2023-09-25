@@ -19,6 +19,8 @@ async function handleSubmit(event: any) {
       toast.success('Login Successful', {
         position: POSITION.TOP_CENTER,
       })
+      localStorage.setItem('access_token', response.data.access_token)
+      localStorage.setItem('refresh_token', response.data.refresh_token)
 
       goHome()
     }

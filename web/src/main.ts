@@ -29,7 +29,7 @@ export const createApp = ViteSSG(
     // Add global properties to app.config
     // const app = ctx.app
 
-    ctx.app.use(Toast, { timeout: 2000 })
+    ctx.app.use(Toast, { timeout: 2000, pauseOnFocusLoss: false })
     // ctx.app.use(Previewer)
   },
 )

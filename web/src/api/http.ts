@@ -20,8 +20,10 @@ const axiosInstance: AxiosInstance = axios.create({
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // TODO 在这里可以加上想要在请求发送前处理的逻辑
-    // TODO 比如 loading 等
+    const token = localStorage.getItem('access_token')
+    if (token)
+      config.headers.Authorization = `Bearer ${token}`
+
     return config
   },
   (error: AxiosError) => {
