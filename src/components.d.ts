@@ -9,22 +9,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Alert: typeof import('./components/Alert.vue')['default']
-    Meessages: typeof import('./components/Meessages.vue')['default']
     Message: typeof import('./components/Message/Message.vue')['default']
+    NavBar: typeof import('./components/NavBar.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
-    NIcon: typeof import('naive-ui')['NIcon']
     NList: typeof import('naive-ui')['NList']
     NListItem: typeof import('naive-ui')['NListItem']
-    Notification: typeof import('./components/Notification/Notification.vue')['default']
     NSpace: typeof import('naive-ui')['NSpace']
     NTag: typeof import('naive-ui')['NTag']
     NThing: typeof import('naive-ui')['NThing']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheCounter: typeof import('./components/TheCounter.vue')['default']
-    TheFooter: typeof import('./components/TheFooter.vue')['default']
-    TheInput: typeof import('./components/TheInput.vue')['default']
   }
 }
