@@ -1,45 +1,58 @@
-<route>
-    {
-        name: "Home",
-        meta: {
-            icon: "i-heroicons-solid-home"
-        }
-    }
-</route>
+<script lang="ts" setup>
+const router = useRouter()
+function login() {
+  router.push('/login/login')
+}
+</script>
 
 <template>
-    <div crate flex flex-col h-screen justify-center items-center text-center space-y-10>
-        <img src="/logo.png" w-40 h-40 mx-auto>
-        <p text-5xl font-bold text-accent animate-pulse>
-            OceanBlog
-        </p>
-
-        <div space-y-4>
-            <p text-white>
-                Currently running Tauri v{{ tauriVersion }}
-            </p>
-            <p text-sm text-gray-500>
-                Powered by <a href="https://github.com/unocss/unocss" target="_blank" underline text-accent>UnoCSS</a>
-            </p>
-        </div>
-
-        <!-- <div space-y-5>
-            <a href="https://tauri.studio/" text-white underline>
-                Open the docs
-            </a>
-
-            <p text-gray-500 italic text-sm>
-                Made by
-                <a href="https://github.com/NicolaSpadari" underline transition-colors hover="text-gray-400">
-                    Nicola Spadari
-                </a>
-            </p>
-        </div> -->
+  <div h-100vh w-full flex flex-col>
+    <!-- Head -->
+    <div h-14 w-full flex flex-items-center border px-8>
+      <div>OceanBlog</div>
+      <div ml-auto @click="login">
+        登录
+      </div>
     </div>
+    <div h-full flex>
+      <!-- Nav Bar -->
+      <div h-full w-40 flex flex-col overflow-y-auto border-r>
+        <!-- Navigation Menu -->
+        <nav class="nav-menu" mt-4>
+          <ul>
+            <li class="nav-item" mb-2>
+              <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item" mb-2>
+              <a href="#" class="nav-link">About</a>
+            </li>
+            <li class="nav-item" mb-2>
+              <a href="#" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item" mb-2>
+              <a href="#" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Body Content -->
+      <div h-full w-full>
+        niaaako
+      </div>
+    </div>
+  </div>
 </template>
 
-<script lang="ts" setup>
-    const tauriVersion = ref("");
+<style scoped>
+.nav-link {
+  display: block;
+  padding: 8px 16px;
+  color: #495057;
+  text-decoration: none;
+}
 
-    tauriVersion.value = await getTauriVersion();
-</script>
+.nav-link:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+</style>
