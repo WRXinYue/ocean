@@ -3,6 +3,7 @@
 ## 如何运行?
 ~~~
 yarn tauri info # 检查相关配置
+yarn
 yarn tauri dev
 ~~~
 
