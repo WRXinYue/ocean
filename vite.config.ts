@@ -19,8 +19,8 @@ import WebfontDownload from 'vite-plugin-webfont-dl'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://github.com/posva/unplugin-vue-router
-// import VueRouter from 'unplugin-vue-router/vite'
-// import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 
 export default defineConfig({
   resolve: {
@@ -39,10 +39,10 @@ export default defineConfig({
     }),
 
     // We recommend Vue user using unplugin-vue-router instead of this plugin.
-    // VueRouter({
-    //   /* options */
-    //   extensions: ['vue', 'md'],
-    // }),
+    VueRouter({
+      /* options */
+      extensions: ['vue', 'md'],
+    }),
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
       extensions: ['vue', 'md'],
@@ -57,11 +57,11 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
-        // VueRouterAutoImports,
-        // {
-        //   // add any other imports you were relying on
-        //   'vue-router/auto': ['useLink'],
-        // },
+        VueRouterAutoImports,
+        {
+          // add any other imports you were relying on
+          'vue-router/auto': ['useLink'],
+        },
         'vue-i18n',
         '@vueuse/head',
         '@vueuse/core',

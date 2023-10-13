@@ -154,6 +154,9 @@ devDependencies:
   unplugin-vue-macros:
     specifier: ^2.1.7
     version: 2.1.7(@vueuse/core@10.1.2)(rollup@3.25.3)(vite@4.3.8)(vue@3.3.4)
+  unplugin-vue-router:
+    specifier: ^0.7.0
+    version: 0.7.0(rollup@3.25.3)(vue-router@4.2.2)(vue@3.3.4)
   vite:
     specifier: ^4.3.8
     version: 4.3.8(@types/node@20.5.1)(sass@1.63.6)
@@ -4144,12 +4147,33 @@ packages:
       - rollup
     dev: true
 
+  /ast-kit@0.9.5(rollup@3.25.3):
+    resolution: {integrity: sha512-kbL7ERlqjXubdDd+szuwdlQ1xUxEz9mCz1+m07ftNVStgwRb2RWw+U6oKo08PAvOishMxiqz1mlJyLl8yQx2Qg==}
+    engines: {node: '>=16.14.0'}
+    dependencies:
+      '@babel/parser': 7.23.0
+      '@rollup/pluginutils': 5.0.5(rollup@3.25.3)
+      pathe: 1.1.1
+    transitivePeerDependencies:
+      - rollup
+    dev: true
+
   /ast-walker-scope@0.4.2:
     resolution: {integrity: sha512-vdCU9JvpsrxWxvJiRHAr8If8cu07LWJXDPhkqLiP4ErbN1fu/mK623QGmU4Qbn2Nq4Mx0vR/Q017B6+HcHg1aQ==}
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.23.0
       '@babel/types': 7.23.0
+    dev: true
+
+  /ast-walker-scope@0.5.0(rollup@3.25.3):
+    resolution: {integrity: sha512-NsyHMxBh4dmdEHjBo1/TBZvCKxffmZxRYhmclfu0PP6Aftre47jOHYaYaNqJcV0bxihxFXhDkzLHUwHc0ocd0Q==}
+    engines: {node: '>=16.14.0'}
+    dependencies:
+      '@babel/parser': 7.23.0
+      ast-kit: 0.9.5(rollup@3.25.3)
+    transitivePeerDependencies:
+      - rollup
     dev: true
 
   /astral-regex@2.0.0:
@@ -10750,6 +10774,33 @@ packages:
       - rollup
       - vite
       - webpack
+    dev: true
+
+  /unplugin-vue-router@0.7.0(rollup@3.25.3)(vue-router@4.2.2)(vue@3.3.4):
+    resolution: {integrity: sha512-ddRreGq0t5vlSB7OMy4e4cfU1w2AwBQCwmvW3oP/0IHQiokzbx4hd3TpwBu3eIAFVuhX2cwNQwp1U32UybTVCw==}
+    peerDependencies:
+      vue-router: ^4.1.0
+    peerDependenciesMeta:
+      vue-router:
+        optional: true
+    dependencies:
+      '@babel/types': 7.23.0
+      '@rollup/pluginutils': 5.0.5(rollup@3.25.3)
+      '@vue-macros/common': 1.8.0(rollup@3.25.3)(vue@3.3.4)
+      ast-walker-scope: 0.5.0(rollup@3.25.3)
+      chokidar: 3.5.3
+      fast-glob: 3.3.1
+      json5: 2.2.3
+      local-pkg: 0.4.3
+      mlly: 1.4.2
+      pathe: 1.1.1
+      scule: 1.0.0
+      unplugin: 1.5.0
+      vue-router: 4.2.2(vue@3.3.4)
+      yaml: 2.3.2
+    transitivePeerDependencies:
+      - rollup
+      - vue
     dev: true
 
   /unplugin@1.5.0:
