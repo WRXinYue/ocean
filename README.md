@@ -1,4 +1,54 @@
-# 更改为基于rust的测试分支
+# OceanBlog demo for rust
+
+> 本项目采用混合(hybrid)技术，实现跨平台的应用开发。这次我选择了Rust —— 更快🚀更强💪
+
+我们采用Tauri框架，并使用了Vue.js作为前端框架，它与Rust和Tauri高度匹配，能够实现组件化的应用开发。
+
+我们期盼通过这个Demo，能展示出Rust、Tauri与Vue.js在现代应用开发中无限的可能性，让每位追求卓越和高效的开发者都能感受到这种混合技术带来的奇妙体验。
+
+<div align="center" style="witdh:100%"> 
+  <table>
+    <tr>
+      <td valign="center" width="100px"><b>WebFrontend<b></td>
+      <td valign="center" width="100px"><b>WebBackend<b></td>
+      <td valign="center" width="100px"><b>Other Tools<b></td>
+    </tr>
+    <tr>
+      <td valign="center" align="center" width="300px">
+        <img height="20" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D" alt="Vue.js" />
+        <img height="20" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+        <img height="20" src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" alt="Netlify" />
+        <img height="20" src="https://img.shields.io/badge/unocss-333333.svg?style=for-the-badge&logo=unocss&logoColor=white" alt="UnoCSS" />
+        <img height="20" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+        <img height="20" src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS" />
+      </td>      
+      <td valign="center" align="center" width="300px">
+        <img height="20" src="https://img.shields.io/badge/tauri-%2324C8DB.svg?style=for-the-badge&logo=tauri&logoColor=%23FFFFFF" alt="blender" />
+        <img height="20" src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust" />
+      </td>
+      <td valign="center" align="center" width="300px">
+        <img height="20" src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Eslint" />
+        <img height="20" src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="Eslint" />
+        <img height="20" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="node" />
+        <img height="20" src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+## Dev Tools
+
+* Rust Analyzer
+* CodeLLDB
+* Crates
+* Better TOML
+* Rust Test Explorer
+* REST Client
+
+Recommended IDE setup: [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+
+Frontend framework source：https://github.com/WRXinYue/vite-template
+
 
 ## How ro run?
 
@@ -41,48 +91,3 @@ yarn tauri dev
 ├── vite.config.ts
 └── yarn.lock
 ~~~
-
-## Dev Tools
-
-* Rust Analyzer
-* CodeLLDB
-* Crates
-* Better TOML
-* Rust Test Explorer
-* REST Client
-
-
-<div align="center" style="witdh:100%"> 
-  <table>
-    <tr>
-      <td valign="center" width="100px"><b>WebFrontend<b></td>
-      <td valign="center" width="100px"><b>WebBackend<b></td>
-      <td valign="center" width="100px"><b>Other Tools<b></td>
-    </tr>
-    <tr>
-      <td valign="center" align="center" width="300px">
-        <img height="20" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D" alt="Vue.js" />
-        <img height="20" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-        <img height="20" src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" alt="Netlify" />
-        <img height="20" src="https://img.shields.io/badge/unocss-333333.svg?style=for-the-badge&logo=unocss&logoColor=white" alt="UnoCSS" />
-        <img height="20" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-        <img height="20" src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS" />
-      </td>      
-      <td valign="center" align="center" width="300px">
-        <img height="20" src="https://img.shields.io/badge/tauri-%2324C8DB.svg?style=for-the-badge&logo=tauri&logoColor=%23FFFFFF" alt="blender" />
-        <img height="20" src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust" />
-      </td>
-      <td valign="center" align="center" width="300px">
-        <img height="20" src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Eslint" />
-        <img height="20" src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="Eslint" />
-        <img height="20" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="node" />
-        <img height="20" src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn" />
-      </td>
-    </tr>
-  </table>
-</div>
-
-Recommended IDE setup: [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
-
-Frontend framework source：https://github.com/WRXinYue/vite-template
-
