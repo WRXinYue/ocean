@@ -1,7 +1,6 @@
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages'
 import generateSitemap from 'vite-ssg-sitemap'
 
 import Layouts from 'vite-plugin-vue-layouts'
@@ -40,14 +39,13 @@ export default defineConfig({
 
     // We recommend Vue user using unplugin-vue-router instead of this plugin.
     VueRouter({
-      /* options */
-      extensions: ['vue', 'md'],
+      routesFolder: 'src/pages',
+      exclude: ['**/components/*.vue', '**/layouts/*.vue'],
+      // routeBlockLang: 'json5',
+      // importMode: 'async',
+      extensions: ['.vue', '.md'],
+      dts: 'src/components.d.ts',
     }),
-    // https://github.com/hannoeru/vite-plugin-pages
-    Pages({
-      extensions: ['vue', 'md'],
-    }),
-    // ⚠️ Vue must be placed after VueRouter()
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
@@ -56,7 +54,6 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
-        'vue-router',
         VueRouterAutoImports,
         {
           // add any other imports you were relying on

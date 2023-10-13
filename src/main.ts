@@ -5,18 +5,13 @@ import { routes as autoRoutes } from 'vue-router/auto/routes'
 import App from './App.vue'
 import type { UserModule } from './types'
 
-// import { routes as customRoutes } from '~/router/index'
-// import generatedRoutes from '~pages'
 import 'vue-toastification/dist/index.css'
 import '@unocss/reset/tailwind.css'
 import '~/assets/styles/main.scss'
 import 'uno.css'
 
 // Combination of automatic routing and custom routing
-// const routes = [...autoRoutes, ...customRoutes]
-
 const routes = setupLayouts(autoRoutes)
-// const routes = setupLayouts(generatedRoutes)
 
 // https://github.com/antfu/vite-ssg
 export const createApp = ViteSSG(
