@@ -15,7 +15,6 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
 import Shiki from 'markdown-it-shiki'
 
-// @ts-expect-error failed to resolve types
 import VueMacros from 'unplugin-vue-macros/vite'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 
@@ -182,17 +181,17 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-          output: {
-              inlineDynamicImports: true
-          }
-      }
+      output: {
+        inlineDynamicImports: true,
+      },
+    },
   },
   server: {
-      fs: {
-          allow: [".."]
-      },
-      host: true,
-      port: 8080,
-      strictPort: true
-  }
+    fs: {
+      allow: ['..'],
+    },
+    host: true,
+    port: 8080,
+    strictPort: true,
+  },
 })
