@@ -1,24 +1,80 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+.yarn/versions
 
-.idea/
+# compiled output
+*dist
+/tmp
+/out-tsc
+.nyc_output
+.coverage
+.swc
 
-# Test binary, built with `go test -c`
-*.test
+# dependencies
+node_modules
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+# IDEs and editors
+**/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
-/media
+# IDE - VSCode
+.vscode/*
+!.vscode/tasks.json
+!.vscode/settings.template.json
+!.vscode/launch.template.json
+!.vscode/extensions.json
 
-#build files
-/bin
+# misc
+/.sass-cache
+/connect.lock
+coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+.pnpm-debug.log
+/typings
+tsconfig.tsbuildinfo
 
-#env files
-.env
+# System Files
+.DS_Store
+Thumbs.db
+
+# env
+*.env.local
+*.local.env
+.history
+
+.next
+.vercel
+out/
+storybook-static
+i18n-generated.ts
+
+test-results
+playwright-report
+playwright/.cache
+download
+
+# Cache
+.eslintcache
+next-env.d.ts
+.rollup.cache
+
+# Rust
+target
+*.node
+tsconfig.node.tsbuildinfo
+lib
+affine.db
+apps/web/next-routes.conf
