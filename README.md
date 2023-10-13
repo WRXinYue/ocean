@@ -35,7 +35,7 @@
         <img height="20" src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Eslint" />
         <img height="20" src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="Eslint" />
         <img height="20" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="node" />
-        <img height="20" src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn" />
+        <img height="20" src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" alt="PNPM" />
       </td>
     </tr>
   </table>
@@ -57,11 +57,11 @@ Frontend framework source：https://github.com/WRXinYue/vite-template
 
 ## How ro run?
 
-yarn tauri info # 检查相关配置
+pnpm tauri info # 检查相关配置
 
 ~~~
-yarn
-yarn tauri dev
+pnpm install
+pnpm tauri dev
 ~~~
 
 ## Directory structure
