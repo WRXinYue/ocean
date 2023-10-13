@@ -16,6 +16,7 @@ import Shiki from 'markdown-it-shiki'
 
 import VueMacros from 'unplugin-vue-macros/vite'
 import WebfontDownload from 'vite-plugin-webfont-dl'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://github.com/posva/unplugin-vue-router
 // import VueRouter from 'unplugin-vue-router/vite'
@@ -80,6 +81,7 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+      resolvers: [NaiveUiResolver()],
     }),
 
     // https://github.com/antfu/unocss
