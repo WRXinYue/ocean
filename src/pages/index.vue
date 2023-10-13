@@ -11,7 +11,7 @@
     <div crate flex flex-col h-screen justify-center items-center text-center space-y-10>
         <img src="/logo.png" w-40 h-40 mx-auto>
         <p text-5xl font-bold text-accent animate-pulse>
-            Hello Vite + Tauri!
+            OceanBlog
         </p>
 
         <div space-y-4>
@@ -23,7 +23,7 @@
             </p>
         </div>
 
-        <div space-y-5>
+        <!-- <div space-y-5>
             <a href="https://tauri.studio/" text-white underline>
                 Open the docs
             </a>
@@ -34,7 +34,7 @@
                     Nicola Spadari
                 </a>
             </p>
-        </div>
+        </div> -->
     </div>
 </template>
 
