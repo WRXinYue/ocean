@@ -37,12 +37,7 @@ export default defineConfig({
       },
     }),
 
-    // We recommend Vue user using unplugin-vue-router instead of this plugin.
     VueRouter({
-      routesFolder: 'src/pages',
-      exclude: ['**/components/*.vue', '**/layouts/*.vue'],
-      // routeBlockLang: 'json5',
-      // importMode: 'async',
       extensions: ['.vue', '.md'],
       dts: 'src/components.d.ts',
     }),
@@ -54,7 +49,6 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
-        VueRouterAutoImports,
         {
           // add any other imports you were relying on
           'vue-router/auto': ['useLink'],
@@ -62,6 +56,7 @@ export default defineConfig({
         'vue-i18n',
         '@vueuse/head',
         '@vueuse/core',
+        VueRouterAutoImports,
       ],
       dts: 'src/auto-imports.d.ts',
       dirs: [
