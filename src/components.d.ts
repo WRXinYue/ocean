@@ -10,7 +10,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Message: typeof import('./components/Message/Message.vue')['default']
-    NavBar: typeof import('./components/NavBar.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
@@ -20,12 +19,11 @@ declare module '@vue/runtime-core' {
     NListItem: typeof import('naive-ui')['NListItem']
     NMenu: typeof import('naive-ui')['NMenu']
     NSpace: typeof import('naive-ui')['NSpace']
-    NSwitch: typeof import('naive-ui')['NSwitch']
     NTag: typeof import('naive-ui')['NTag']
     NThing: typeof import('naive-ui')['NThing']
-    README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideBar: typeof import('./components/SideBar.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
     TheHead: typeof import('./components/TheHead.vue')['default']
   }
