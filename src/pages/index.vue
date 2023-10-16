@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+import { invoke } from '@tauri-apps/api/tauri'
+
+onMounted(() => {
+  invoke('my_custom_command').then((response) => {
+  // eslint-disable-next-line no-console
+    console.log(response)
+  })
+})
+</script>
+
 <template>
   <div h-full w-full>
     <n-list clickable hoverable>
