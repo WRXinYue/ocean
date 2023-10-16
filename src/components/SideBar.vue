@@ -104,7 +104,6 @@ export default defineComponent({
     :width="240"
     :native-scrollbar="false"
     :inverted="inverted"
-    style="max-height: 320px;"
   >
     <n-menu
       :inverted="inverted"
