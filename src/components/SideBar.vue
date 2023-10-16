@@ -7,31 +7,41 @@ import {
   PersonOutline as PersonIcon,
   WineOutline as WineIcon,
 } from '@vicons/ionicons5'
+import { RouterLink } from 'vue-router'
+import type { MenuOption } from 'naive-ui'
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
-const menuOptions = [
+const menuOptions: MenuOption[] = [
   {
-    label: '主页',
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: '/',
+          },
+        },
+        { default: () => '主页' },
+      ),
     key: 'home',
     icon: renderIcon(BookIcon),
   },
   {
-    label: '博客文章',
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: '/',
+          },
+        },
+        { default: () => '博客文章' },
+      ),
     key: 'blog-posts',
     icon: renderIcon(BookIcon),
-    children: [
-      {
-        label: '技术',
-        key: 'tech',
-      },
-      {
-        label: '旅游',
-        key: 'travel',
-      },
-    ],
   },
   {
     label: '关于我',
@@ -82,6 +92,20 @@ const menuOptions = [
     label: '联系我',
     key: 'contact',
     icon: renderIcon(PersonIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: '/setting',
+          },
+        },
+        { default: () => '设置' },
+      ),
+    key: 'setting',
+    icon: renderIcon(BookIcon),
   },
 ]
 
