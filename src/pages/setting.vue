@@ -8,8 +8,8 @@ const toast = useToast()
 async function getDirCon(dir: string | string []) {
   if (typeof dir === 'string') {
     try {
-      const dirCon = await fs.readDir(dir)
-      toast.warning(`777, ${dirCon}`, {
+      await fs.readDir(dir) // Verify if the path is legal
+      toast.success('File path imported successfully', {
         position: POSITION.TOP_CENTER,
       })
       localStorage.setItem('folderPath', dir)

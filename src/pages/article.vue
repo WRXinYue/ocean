@@ -1,19 +1,30 @@
 <script lang="ts" setup>
 import { readBinaryFile, readDir } from '@tauri-apps/api/fs'
+import { POSITION, useToast } from 'vue-toastification'
 
+const toast = useToast()
 const metaPattern = /---\n([\s\S]*?)\n---/ // The meta information is obtained by regular
+
 const metaDict = {} as any
 
 /** Get meta information */
 function mateFun(mdString: string) {
   const metaData = mdString.match(metaPattern)
   if (!metaData) {
-    console.log('This document has no meta information!')
+    toast.warning('This document has no meta information!', {
+      position: POSITION.TOP_CENTER,
+    })
     return
   }
 
+  console.log(metaData)
+  debugger
+
   // Split the meta information into separate lines and exclude empty lines
   const metaLines = metaData[1].split('\n').filter(line => line.trim())
+
+  console.log(metaLines)
+  debugger
 
   for (const line of metaLines) {
     const key: string = line.split(/: /)[0]
@@ -23,7 +34,6 @@ function mateFun(mdString: string) {
       value = String(value.slice(2).split('\n - '))
 
     metaDict[key] = value
-    console.log(metaDict)
   }
 }
 
@@ -39,18 +49,19 @@ async function redFileTitle() {
         const contents = await readBinaryFile(entry.path)
         const decoder = new TextDecoder()
         const mdStr = decoder.decode(contents)
-        console.log(mdStr)
         mateFun(mdStr)
 
         fileNames.push(entry.name)
       }
       else {
-        console.log('This is not an MD file')
+        console.warn('This is not an MD file')
       }
     }
   }
   else {
-    console.log('No folder path set in localStorage.')
+    toast.warning('No folder path set in localStorage.', {
+      position: POSITION.TOP_CENTER,
+    })
   }
 }
 
