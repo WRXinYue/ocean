@@ -10,7 +10,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Unocss from 'unocss/vite'
 
-import VueMacros from 'unplugin-vue-macros/vite'
+import VueMacros from 'unplugin-vue-macros'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
@@ -26,7 +26,7 @@ export default defineConfig({
   },
 
   plugins: [
-    VueMacros({
+    VueMacros.vite({
       plugins: {
         vue: Vue({
           include: [/\.vue$/, /\.md$/],

@@ -6,6 +6,7 @@ async function getDirCon(dir: string | string []) {
   if (typeof dir === 'string') {
     const dirCon = await fs.readDir(dir)
     console.log(777, dirCon)
+    localStorage.setItem('dirConUrl', dir)
   }
 }
 

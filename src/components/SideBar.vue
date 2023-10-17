@@ -58,8 +58,17 @@ const menuOptions: MenuOption[] = [
     icon: renderIcon(PersonIcon),
   },
   {
-    label: '联系我',
-    key: 'contact',
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: '/page',
+          },
+        },
+        { default: () => '测试页' },
+      ),
+    key: 'page',
     icon: renderIcon(PersonIcon),
   },
   {
