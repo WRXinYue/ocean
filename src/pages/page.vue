@@ -1,18 +1,26 @@
 <script lang="ts" setup>
 import 'github-markdown-css/github-markdown-light.css'
-import { marked } from 'marked'
 import { ref, shallowRef } from 'vue'
+import { marked } from 'marked'
+import { readBinaryFile } from '@tauri-apps/api/fs'
+
+const mdStr: Ref<string> = ref('')
 
 const render = new marked.Renderer()
+const markdownToHtml = shallowRef('')
+
 marked.setOptions({
   renderer: render,
   gfm: true,
   pedantic: false,
 })
 
-const value = ref('**Hello,World**')
-const markdownToHtml = shallowRef('')
-markdownToHtml.value = marked(value.value)
+async function redFile() {
+  const contents = await readBinaryFile('/home/wrxinyue/文档/my_project/MyBlog/source/_posts/WebBackend/Python/Python虚拟环境创建.md')
+  const decoder = new TextDecoder()
+  mdStr.value = decoder.decode(contents)
+  markdownToHtml.value = marked(mdStr.value)
+}
 
 function change(value: string) {
   markdownToHtml.value = marked(value)
@@ -20,7 +28,10 @@ function change(value: string) {
 </script>
 
 <template>
-  <n-input v-model:value="value" type="textarea" @input="change" />
+  <button @click="redFile">
+    123
+  </button>
+  <n-input v-model:value="mdStr" type="textarea" @input="change" />
   <div class="markdown-body" v-html="markdownToHtml" />
 </template>
 
