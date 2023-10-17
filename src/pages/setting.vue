@@ -1,22 +1,43 @@
 <script setup lang="ts">
 import { dialog, fs } from '@tauri-apps/api'
 import { FolderOpen } from '@vicons/ionicons5'
+import { POSITION, useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 async function getDirCon(dir: string | string []) {
   if (typeof dir === 'string') {
-    const dirCon = await fs.readDir(dir)
-    console.log(777, dirCon)
-    localStorage.setItem('dirConUrl', dir)
+    try {
+      const dirCon = await fs.readDir(dir)
+      toast.warning(`777, ${dirCon}`, {
+        position: POSITION.TOP_CENTER,
+      })
+      localStorage.setItem('folderPath', dir)
+    }
+    catch (err: any) {
+      toast.error(err, {
+        position: POSITION.TOP_CENTER,
+      })
+    }
   }
 }
 
 async function chooseDir() {
-  const dir = await dialog.open({
-    directory: true,
-    multiple: false,
-  })
-  console.log(666, dir)
-  getDirCon(dir as string)
+  try {
+    const dir = await dialog.open({
+      directory: true,
+      multiple: false,
+    })
+    toast.warning(`666, ${dir}`, {
+      position: POSITION.TOP_CENTER,
+    })
+    getDirCon(dir as string)
+  }
+  catch (err: any) {
+    toast.error(err, {
+      position: POSITION.TOP_CENTER,
+    })
+  }
 }
 
 const obsidianFolderPath = ref('')

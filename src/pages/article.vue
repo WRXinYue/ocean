@@ -1,15 +1,71 @@
 <script lang="ts" setup>
-import { invoke } from '@tauri-apps/api/tauri'
+import { readBinaryFile, readDir } from '@tauri-apps/api/fs'
 
-onMounted(() => {
-  invoke('my_custom_command').then((response) => {
-  // eslint-disable-next-line no-console
-    console.log(response)
-  })
-})
+const metaPattern = /---\n([\s\S]*?)\n---/ // The meta information is obtained by regular
+const metaDict = {} as any
+
+/** Get meta information */
+function mateFun(mdString: string) {
+  const metaData = mdString.match(metaPattern)
+  if (!metaData) {
+    console.log('This document has no meta information!')
+    return
+  }
+
+  // Split the meta information into separate lines and exclude empty lines
+  const metaLines = metaData[1].split('\n').filter(line => line.trim())
+
+  for (const line of metaLines) {
+    const key: string = line.split(/: /)[0]
+    let value: string = line.split(/: /)[1]
+    // Determine if it is list information, such as categories and tags
+    if (value.startsWith('- '))
+      value = String(value.slice(2).split('\n - '))
+
+    metaDict[key] = value
+    console.log(metaDict)
+  }
+}
+
+/** Get the title and summary of the article */
+async function redFileTitle() {
+  const folderPath = localStorage.getItem('folderPath')
+  if (folderPath) {
+    const entries = await readDir(folderPath)
+
+    const fileNames = []
+    for (const entry of entries) {
+      if (entry.name?.endsWith('.md')) {
+        const contents = await readBinaryFile(entry.path)
+        const decoder = new TextDecoder()
+        const mdStr = decoder.decode(contents)
+        console.log(mdStr)
+        mateFun(mdStr)
+
+        fileNames.push(entry.name)
+      }
+      else {
+        console.log('This is not an MD file')
+      }
+    }
+  }
+  else {
+    console.log('No folder path set in localStorage.')
+  }
+}
+
+// onMounted(() => {
+//   invoke('my_custom_command').then((response) => {
+//   // eslint-disable-next-line no-console
+//     console.log(response)
+//   })
+// })
 </script>
 
 <template>
+  <n-button @click="redFileTitle">
+    点我
+  </n-button>
   <div h-full w-full>
     <n-list clickable hoverable>
       <n-list-item>
