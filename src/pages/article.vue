@@ -3,38 +3,27 @@ import { readBinaryFile, readDir } from '@tauri-apps/api/fs'
 import { POSITION, useToast } from 'vue-toastification'
 
 const toast = useToast()
-const metaPattern = /---\n([\s\S]*?)\n---/ // The meta information is obtained by regular
-
-const metaDict = {} as any
 
 /** Get meta information */
 function mateFun(mdString: string) {
-  const metaData = mdString.match(metaPattern)
-  if (!metaData) {
-    toast.warning('This document has no meta information!', {
-      position: POSITION.TOP_CENTER,
-    })
-    return
-  }
+  const frontMatter = mdString.split('---')[1]
+  const metadata = {}
+  const lines = frontMatter.split('\n')
 
-  console.log(metaData)
-  debugger
+  lines.forEach((line) => {
+    if (line) {
+      const parts = line.split(':')
+      const key = parts[0].trim()
+      let value = parts.slice(1).join('join').trim() as any
 
-  // Split the meta information into separate lines and exclude empty lines
-  const metaLines = metaData[1].split('\n').filter(line => line.trim())
+      if (value[0] === '-')
+        value = value.slice(1).trim().split('\n -').map((s) => { return s.trim })
+      metadata[key] = value
+    }
+  })
+  console.log(metadata)
 
-  console.log(metaLines)
-  debugger
-
-  for (const line of metaLines) {
-    const key: string = line.split(/: /)[0]
-    let value: string = line.split(/: /)[1]
-    // Determine if it is list information, such as categories and tags
-    if (value.startsWith('- '))
-      value = String(value.slice(2).split('\n - '))
-
-    metaDict[key] = value
-  }
+  return metadata
 }
 
 /** Get the title and summary of the article */
