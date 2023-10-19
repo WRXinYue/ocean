@@ -70,6 +70,9 @@ async function redFileTitle() {
   }
 }
 
+onMounted(async () => {
+  await redFileTitle()
+})
 // onMounted(() => {
 //   invoke('my_custom_command').then((response) => {
 //   // eslint-disable-next-line no-console
@@ -79,9 +82,6 @@ async function redFileTitle() {
 </script>
 
 <template>
-  <n-button @click="redFileTitle">
-    点我
-  </n-button>
   <div h-full w-full>
     <n-list clickable hoverable>
       <n-list-item v-for="metaData in metaDataList" :key="metaData.title">

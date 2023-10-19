@@ -25,12 +25,13 @@ async function redFile() {
 function change(value: string) {
   markdownToHtml.value = marked(value)
 }
+
+onMounted(() => {
+  redFile()
+})
 </script>
 
 <template>
-  <button @click="redFile">
-    123
-  </button>
   <n-input v-model:value="mdStr" type="textarea" @input="change" />
   <div class="markdown-body" v-html="markdownToHtml" />
 </template>

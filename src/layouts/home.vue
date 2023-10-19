@@ -16,18 +16,17 @@ export default defineComponent({
   >
     <n-space vertical>
       <n-layout>
-        <n-layout-header :inverted="inverted" bordered>
+        <n-layout-header :inverted="inverted">
           <TheHead />
         </n-layout-header>
-        <n-layout has-sider>
+        <n-layout has-sider h-92vh>
           <SideBar />
-          <n-layout h-85vh>
+          <n-layout>
             <RouterView />
           </n-layout>
         </n-layout>
-        <n-layout-footer :inverted="inverted" bordered>
-          <TheFooter />
-        </n-layout-footer>
+        <!-- not use n-layout-footer -->
+        <TheFooter />
       </n-layout>
     </n-space>
   </main>
