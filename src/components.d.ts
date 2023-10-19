@@ -10,7 +10,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Message: typeof import('./components/Message/Message.vue')['default']
+    NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
+    NCard: typeof import('naive-ui')['NCard']
+    NDivider: typeof import('naive-ui')['NDivider']
+    NIcon: typeof import('naive-ui')['NIcon']
     NInput: typeof import('naive-ui')['NInput']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']

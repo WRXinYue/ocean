@@ -1,18 +1,21 @@
-<script lang="ts">
+<script setup lang="ts">
 import type { Component } from 'vue'
-import { defineComponent, h, ref } from 'vue'
+import { h, ref } from 'vue'
+import type { MenuOption } from 'naive-ui'
 import { NIcon } from 'naive-ui'
 import {
   BookOutline as BookIcon,
+  ChatboxEllipsesOutline as ChatboxEllipsesOut,
   PersonOutline as PersonIcon,
   WineOutline as WineIcon,
 } from '@vicons/ionicons5'
 import { RouterLink } from 'vue-router'
-import type { MenuOption } from 'naive-ui'
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
+
+const inverted = ref(false)
 
 const menuOptions: MenuOption[] = [
   {
@@ -120,16 +123,21 @@ const menuOptions: MenuOption[] = [
     key: 'setting',
     icon: renderIcon(BookIcon),
   },
-]
-
-export default defineComponent({
-  setup() {
-    return {
-      inverted: ref(false),
-      menuOptions,
-    }
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: '/llm',
+          },
+        },
+        { default: () => 'LLM' },
+      ),
+    key: 'llm',
+    icon: renderIcon(ChatboxEllipsesOut),
   },
-})
+]
 </script>
 
 <template>
