@@ -38,12 +38,12 @@ const menuOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
-            name: '/article',
+            name: '/articleList',
           },
         },
-        { default: () => '博客文章' },
+        { default: () => '文章列表' },
       ),
-    key: 'blog-posts',
+    key: 'article-list',
     icon: renderIcon(BookIcon),
   },
   {
@@ -58,20 +58,6 @@ const menuOptions: MenuOption[] = [
         { default: () => '关于我' },
       ),
     key: 'about-me',
-    icon: renderIcon(PersonIcon),
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: '/page',
-          },
-        },
-        { default: () => '测试页' },
-      ),
-    key: 'page',
     icon: renderIcon(PersonIcon),
   },
   {

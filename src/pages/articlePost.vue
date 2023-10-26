@@ -3,10 +3,13 @@ import 'github-markdown-css/github-markdown-light.css'
 import { ref, shallowRef } from 'vue'
 import { marked } from 'marked'
 import { readBinaryFile } from '@tauri-apps/api/fs'
+import useArticleStore from '~/stores/article'
+
+const articleStore = useArticleStore()
+const render = new marked.Renderer()
 
 const mdStr: Ref<string> = ref('')
-
-const render = new marked.Renderer()
+const articlePath = ref('')
 const markdownToHtml = shallowRef('')
 
 marked.setOptions({
@@ -16,7 +19,7 @@ marked.setOptions({
 })
 
 async function redFile() {
-  const contents = await readBinaryFile('/home/wrxinyue/文档/my_project/MyBlog/source/_posts/WebBackend/Python/Python虚拟环境创建.md')
+  const contents = await readBinaryFile(articlePath.value)
   const decoder = new TextDecoder()
   mdStr.value = decoder.decode(contents)
   markdownToHtml.value = marked(mdStr.value)
@@ -27,6 +30,7 @@ function change(value: string) {
 }
 
 onMounted(() => {
+  articlePath.value = articleStore.path
   redFile()
 })
 </script>
