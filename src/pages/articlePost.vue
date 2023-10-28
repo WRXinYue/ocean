@@ -4,11 +4,13 @@ import { ref, shallowRef } from 'vue'
 import { marked } from 'marked'
 import { readBinaryFile } from '@tauri-apps/api/fs'
 import useArticleStore from '~/stores/article'
+import { getArticle, parseArticleMeta } from '~/utils/article/meta'
 
 const articleStore = useArticleStore()
 const render = new marked.Renderer()
-
-const mdStr: Ref<string> = ref('')
+/** Render the markdown of the page */
+const mdContent: Ref<string> = ref('')
+const mdMeta: Ref<any> = ref('')
 const articlePath = ref('')
 const markdownToHtml = shallowRef('')
 
@@ -22,8 +24,12 @@ marked.setOptions({
 async function redFile() {
   const contents = await readBinaryFile(articlePath.value)
   const decoder = new TextDecoder()
-  mdStr.value = decoder.decode(contents)
-  markdownToHtml.value = marked(mdStr.value)
+  const markdownStr: string = decoder.decode(contents)
+  const article = getArticle(markdownStr)
+
+  mdContent.value = article.content
+  mdMeta.value = parseArticleMeta(article.meta)
+  markdownToHtml.value = marked(mdContent.value)
 }
 
 function change(value: string) {
@@ -37,6 +43,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- TODO: mdMeta 需要建立model类，不能以any进行声明，此处仅作为测试 -->
+  {{ mdMeta }}
   <div class="markdown-body" v-html="markdownToHtml" />
 </template>
 

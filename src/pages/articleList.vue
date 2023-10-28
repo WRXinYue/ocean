@@ -4,7 +4,7 @@ import { POSITION, useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
 import type { ArticleMeta } from '~/models/article'
 import useArticleStore from '~/stores/article'
-import { getArticleMeta, parseArticleMeta } from '~/utils/article/meta'
+import { getArticle, parseArticleMeta } from '~/utils/article/meta'
 
 const toast = useToast()
 const router = useRouter()
@@ -13,8 +13,8 @@ const articleStore = useArticleStore()
 
 /** Get meta information */
 function convertToDict(mdString: string) {
-  const lines: string[] = getArticleMeta(mdString)
-  const dict = parseArticleMeta(lines)
+  const article = getArticle(mdString)
+  const dict = parseArticleMeta(article.meta)
   return dict
 }
 
