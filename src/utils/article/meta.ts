@@ -20,7 +20,7 @@ export function getArticle(md: string) {
  * @returns The parsed dictionary.
  */
 export function parseArticleMeta(meta: string[]) {
-  const dict: Record<'tags' | 'categories', string[]> = {
+  const dict: Record<string, string[]> = {
     tags: [],
     categories: [],
   }
@@ -28,9 +28,9 @@ export function parseArticleMeta(meta: string[]) {
   for (let i = 0; i < meta.length; i++) {
     const line = meta[i].trim()
     if (line.includes(':')) {
-      const splitLine = line.split(':')
-      const key = splitLine[0].trim()
-      // const value = splitLine[1].trim()
+      const splitLine: string[] = line.split(':')
+      const key: string = splitLine[0].trim()
+      const value: string = splitLine[1].trim()
 
       if (key === 'tags' || key === 'categories') {
         // If it's a list item, keep reading lines until finished
@@ -46,9 +46,9 @@ export function parseArticleMeta(meta: string[]) {
           }
         }
       }
-      // else {
-      //   dict[key] = value
-      // }
+      else {
+        dict[key] = [value]
+      }
     }
   }
 
