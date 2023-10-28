@@ -18,6 +18,7 @@ marked.setOptions({
   pedantic: false,
 })
 
+/** first reade file, initialize */
 async function redFile() {
   const contents = await readBinaryFile(articlePath.value)
   const decoder = new TextDecoder()
@@ -36,7 +37,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <n-input v-model:value="mdStr" type="textarea" @input="change" />
   <div class="markdown-body" v-html="markdownToHtml" />
 </template>
 

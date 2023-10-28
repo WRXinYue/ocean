@@ -4,6 +4,7 @@ import { POSITION, useToast } from 'vue-toastification'
 import { useRouter } from 'vue-router'
 import type { ArticleMeta } from '~/models/article'
 import useArticleStore from '~/stores/article'
+import { getArticleMeta, parseArticleMeta } from '~/utils/article/meta'
 
 const toast = useToast()
 const router = useRouter()
@@ -12,37 +13,8 @@ const articleStore = useArticleStore()
 
 /** Get meta information */
 function convertToDict(mdString: string) {
-  const frontMatter = mdString.split('---')[1]
-  const dict = {} as any
-  const lines = frontMatter.split('\n')
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim()
-    if (line.includes(':')) {
-      const splitLine = line.split(':')
-      const key = splitLine[0].trim()
-      const value = splitLine[1].trim()
-
-      if (key === 'tags' || key === 'categories') {
-        // If it's a list item, keep reading lines until finished
-        dict[key] = []
-        for (let j = i + 1; j < lines.length; j++) {
-          if (lines[j].trim().startsWith('-')) {
-            dict[key].push(lines[j].trim().substring(1).trim())
-          }
-          else {
-            // If the next line does not start with a dash ('-'), it's not part of the list
-            i = j - 1
-            break
-          }
-        }
-      }
-      else {
-        dict[key] = value
-      }
-    }
-  }
-
+  const lines: string[] = getArticleMeta(mdString)
+  const dict = parseArticleMeta(lines)
   return dict
 }
 
