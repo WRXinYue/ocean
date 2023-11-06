@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "tauri": "tauri dev"
+    "dev:tauri": "cross-env VITE_NETWORK_PROCESSOR=tauri vite",
+    "dev:native": "tauri dev",
+    "build": "cross-env VITE_NETWORK_PROCESSOR=tauri vite build && tauri build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
@@ -17,6 +18,7 @@
     "@vueuse/core": "^10.1.2",
     "@vueuse/head": "^1.1.26",
     "axios": "^1.4.0",
+    "front-matter": "^4.0.2",
     "marked": "^9.1.2",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.3",

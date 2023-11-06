@@ -8,11 +8,12 @@ import { getArticle, parseArticleMeta } from '~/utils/article/meta'
 
 const articleStore = useArticleStore()
 const render = new marked.Renderer()
+
 /** Render the markdown of the page */
-const mdContent: Ref<string> = ref('')
-const mdMeta: Ref<any> = ref('')
-const articlePath = ref('')
-const markdownToHtml = shallowRef('')
+const markdownContent: Ref<string> = ref('')
+const markdownMeta: Ref<any> = ref('')
+const markdownPath = ref('')
+const markdownRenderedContent = shallowRef('')
 
 marked.setOptions({
   renderer: render,
@@ -20,32 +21,82 @@ marked.setOptions({
   pedantic: false,
 })
 
+function handleClick(event: any) {
+  const divElement = document.getElementById('markdownContent')
+  // 检查元素是否存在
+  if (divElement) {
+    // 执行相应的操作，例如获取源代码、显示编辑器等
+    const sourceCode = markdownContent.value
+    console.log('点击的源代码段落:', sourceCode)
+  }
+}
+
 /** first reade file, initialize */
-async function redFile() {
-  const contents = await readBinaryFile(articlePath.value)
+async function renderContent() {
+  const contents = await readBinaryFile(markdownPath.value)
   const decoder = new TextDecoder()
   const markdownStr: string = decoder.decode(contents)
   const article = getArticle(markdownStr)
 
-  mdContent.value = article.content
-  mdMeta.value = parseArticleMeta(article.meta)
-  markdownToHtml.value = marked(mdContent.value)
+  markdownContent.value = article.content
+  markdownMeta.value = parseArticleMeta(article.meta)
+  markdownRenderedContent.value = marked(markdownContent.value)
+  console.log(markdownRenderedContent.value)
+  const html = addIncrementalTags(markdownRenderedContent.value)
+  console.log(html)
 }
 
 function change(value: string) {
-  markdownToHtml.value = marked(value)
+  markdownRenderedContent.value = marked(value)
+}
+
+function addIncrementalTags(html: any) {
+  let tagCount = 0
+
+  const replaceTag = (tag: any) => {
+    tagCount++
+    const replacedTag = `<${tag} data-tag="${tagCount}">`
+    return replacedTag
+  }
+
+  // 匹配 <pre><code> 标签
+  const preCodeRegex = /<pre><code([^>]*)>/g
+  html = html.replace(preCodeRegex, (match: any, p1: any) => {
+    // 匹配成功后，将 <pre><code> 标签替换为带有自增标签的新标签
+    return `<pre><code${p1.replace('class', 'data-class')} data-tag="${tagCount + 1}">`
+  })
+
+  // 匹配 <p> 标签
+  const pRegex = /<p([^>]*)>/g
+  html = html.replace(pRegex, (match: any, p1: any) => {
+    // 匹配成功后，将 <p> 标签替换为带有自增标签的新标签
+    return `<p${p1}${replaceTag('data-p')}>`
+  })
+
+  // 匹配 <code> 标签
+  const codeRegex = /<code([^>]*)>/g
+  html = html.replace(codeRegex, (match: any, p1: any) => {
+    // 匹配成功后，将 <code> 标签替换为带有自增标签的新标签
+    return `<code${p1}${replaceTag('data-code')}>`
+  })
+
+  return html
 }
 
 onMounted(() => {
-  articlePath.value = articleStore.path
-  redFile()
+  markdownPath.value = articleStore.path
+  renderContent()
+
+  const divElement = document.getElementById('markdownContent')
+  if (divElement)
+    divElement.addEventListener('click', handleClick)
 })
 </script>
 
 <template>
   <!-- TODO: mdMeta 需要建立model类，不能以any进行声明，此处仅作为测试 -->
-  {{ mdMeta }}
-  <div class="markdown-body" v-html="markdownToHtml" />
+  {{ markdownMeta }}
+  <div id="markdownContent" class="markdown-body" v-html="markdownRenderedContent" />
 </template>
 
 <route lang="yaml">

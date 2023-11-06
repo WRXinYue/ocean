@@ -11,10 +11,6 @@ async function toggleLocales() {
   await loadLanguageAsync(newLocale)
   locale.value = newLocale
 }
-
-function login() {
-  router.push('/login/login')
-}
 </script>
 
 <template>
@@ -24,9 +20,6 @@ function login() {
       <button icon-btn :title="t('button.toggle_dark')" @click="toggleDark()">
         <div i="carbon-sun dark:carbon-moon" />
       </button>
-      <n-button quaternary type="tertiary" @click="login">
-        登录
-      </n-button>
     </div>
   </div>
 </template>
