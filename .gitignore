@@ -28,11 +28,11 @@ node_modules
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
-!.vscode/tasks.json
-!.vscode/settings.template.json
-!.vscode/launch.template.json
-!.vscode/extensions.json
+# .vscode/*
+# !.vscode/tasks.json
+# !.vscode/settings.template.json
+# !.vscode/launch.template.json
+# !.vscode/extensions.json
 
 # misc
 /.sass-cache

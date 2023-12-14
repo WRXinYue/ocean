@@ -41,6 +41,11 @@ async function chooseDir() {
 }
 
 const obsidianFolderPath = ref('')
+
+onMounted(() => {
+  const folderPath = localStorage.getItem('folderPath')
+  obsidianFolderPath.value = folderPath
+})
 </script>
 
 <template>

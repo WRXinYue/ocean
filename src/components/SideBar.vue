@@ -41,7 +41,7 @@ const menuOptions: MenuOption[] = [
             name: '/articleList',
           },
         },
-        { default: () => '文章列表' },
+        { default: () => '知识库' },
       ),
     key: 'article-list',
     icon: renderIcon(BookIcon),
