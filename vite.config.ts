@@ -9,6 +9,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Unocss from 'unocss/vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import VueMacros from 'unplugin-vue-macros'
 import WebfontDownload from 'vite-plugin-webfont-dl'
@@ -116,6 +117,12 @@ export default defineConfig({
 
     // https://github.com/feat-agency/vite-plugin-webfont-dl
     WebfontDownload(),
+
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+      symbolId: 'icon-[dir]-[name]',
+    }),
+
   ],
 
   // https://github.com/vitest-dev/vitest

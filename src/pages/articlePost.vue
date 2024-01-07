@@ -12,7 +12,6 @@ const render = new marked.Renderer()
 /** Render the markdown of the page */
 const markdownContent: Ref<string> = ref('')
 const markdownMeta: Ref<any> = ref('')
-const markdownPath = ref('')
 const markdownRenderedContent = shallowRef('')
 
 marked.setOptions({
@@ -32,8 +31,8 @@ function handleClick(event: any) {
 }
 
 /** first reade file, initialize */
-async function renderContent() {
-  const contents = await readBinaryFile(markdownPath.value)
+async function renderContent(markdownPath: string) {
+  const contents = await readBinaryFile(markdownPath)
   const decoder = new TextDecoder()
   const markdownStr: string = decoder.decode(contents)
   const article = getArticle(markdownStr)
@@ -42,50 +41,14 @@ async function renderContent() {
   markdownMeta.value = parseArticleMeta(article.meta)
   markdownRenderedContent.value = marked(markdownContent.value)
   console.log(markdownRenderedContent.value)
-  const html = addIncrementalTags(markdownRenderedContent.value)
-  console.log(html)
 }
 
 function change(value: string) {
   markdownRenderedContent.value = marked(value)
 }
 
-function addIncrementalTags(html: any) {
-  let tagCount = 0
-
-  const replaceTag = (tag: any) => {
-    tagCount++
-    const replacedTag = `<${tag} data-tag="${tagCount}">`
-    return replacedTag
-  }
-
-  // 匹配 <pre><code> 标签
-  const preCodeRegex = /<pre><code([^>]*)>/g
-  html = html.replace(preCodeRegex, (match: any, p1: any) => {
-    // 匹配成功后，将 <pre><code> 标签替换为带有自增标签的新标签
-    return `<pre><code${p1.replace('class', 'data-class')} data-tag="${tagCount + 1}">`
-  })
-
-  // 匹配 <p> 标签
-  const pRegex = /<p([^>]*)>/g
-  html = html.replace(pRegex, (match: any, p1: any) => {
-    // 匹配成功后，将 <p> 标签替换为带有自增标签的新标签
-    return `<p${p1}${replaceTag('data-p')}>`
-  })
-
-  // 匹配 <code> 标签
-  const codeRegex = /<code([^>]*)>/g
-  html = html.replace(codeRegex, (match: any, p1: any) => {
-    // 匹配成功后，将 <code> 标签替换为带有自增标签的新标签
-    return `<code${p1}${replaceTag('data-code')}>`
-  })
-
-  return html
-}
-
 onMounted(() => {
-  markdownPath.value = articleStore.path
-  renderContent()
+  renderContent(articleStore.path)
 
   const divElement = document.getElementById('markdownContent')
   if (divElement)
